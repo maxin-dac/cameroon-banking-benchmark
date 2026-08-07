@@ -19,7 +19,7 @@
   <img src="https://img.shields.io/badge/Licence-MIT-green?style=for-the-badge" alt="Licence" />
 </p>
 
-🇬🇧 Version anglaise : [README_EN.txt](README_EN.txt)
+🇬🇧 Version anglaise : [README_EN.md](README_EN.md)
 
 ## En bref
 
