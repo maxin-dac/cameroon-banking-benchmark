@@ -1,10 +1,8 @@
 # 🏦 Cameroun Banking Benchmark — Observatoire de la Transparence Bancaire
 
-> 🚧 **Projet en cours de développement.** Module tarifaire fonctionnel (10 banques documentées) ; l'indice de transparence sur les 19 banques agréées et les modules financier/digital sont en cours de construction.
-
 **Problème :** l'information bancaire camerounaise est structurellement opaque : grilles tarifaires hétérogènes voire absentes, données financières publiées tardivement (ou jamais), et aucune vue comparative fiable du marché des 19 banques agréées.
 
-**Solution :** un observatoire open source qui mesure ce qui est **vérifiable** : la transparence. Chaque banque agréée est évaluée sur quatre piliers objectifs (tarifs, finance, digital, gouvernance), à partir de sources publiques tracées et datées.
+**Solution :** un observatoire open source et bilingue qui mesure ce qui est **vérifiable** — la publication des tarifs, des informations financières, de la présence digitale et de la gouvernance — pour les 19 banques agréées par la COBAC, à partir de sources publiques officielles, tracées et datées.
 
 <p align="left">
   <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
@@ -14,81 +12,88 @@
   <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite" />
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
   <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
-  <img src="https://img.shields.io/badge/Marché-19_banques_agréées-00693E?style=for-the-badge" alt="19 banques" />
-  <img src="https://img.shields.io/badge/Statut-Travail_en_cours-orange?style=for-the-badge" alt="Statut" />
-  <img src="https://img.shields.io/badge/Bilingue-FR_|_EN-008080?style=for-the-badge" alt="Bilingue" />
-  <img src="https://img.shields.io/badge/Licence-MIT-green?style=for-the-badge" alt="Licence" />
+  <img src="https://img.shields.io/badge/Data-Sources_publiques-00693E?style=for-the-badge" alt="Données publiques" />
+  <img src="https://img.shields.io/badge/Bilingue-FR_|_EN-008080?style=for-the-badge" alt="Bilingue FR EN" />
+  <img src="https://img.shields.io/badge/Statut-En_cours-orange?style=for-the-badge" alt="Statut" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
 </p>
 
-🇬🇧 Version anglaise : [README_EN.txt](README_EN.txt)
+> 🚧 **Travail en cours** : module tarifaire opérationnel (10 banques) ; modules financier et digital en cours de collecte.
+
+🇬🇧 English : [README_EN.md](README_EN.md)
 
 ## En bref
 
-- **Périmètre officiel** : les 19 banques agréées au Cameroun.
-- **Module tarifs** : 10 banques documentées par collecte manuelle (175 lignes normalisées HT).
-- **Indice de transparence** : 4 piliers pondérés, 100 % vérifiables, aucune estimation.
-- **Décision méthodologique** : pas de score de compétitivité prix — on mesure la transparence, pas le prix.
+- **Ce que ça fait** : évalue et compare les 19 banques agréées du Cameroun sur leur transparence (indice de publication) et compare les tarifs particuliers des 10 banques documentées sur un panier normalisé HT.
+- **Compétences mobilisées** : data engineering, collecte manuelle, normalisation tarifaire, construction d'indicateurs composites, data visualisation, UX bilingue, dashboarding.
+- **Démo** : bientôt en ligne (Streamlit Cloud).
 - **Stack** : Python · Streamlit · Plotly · Pandas · SQLite · HTML · CSS.
 
-## Pourquoi pas de « score de compétitivité tarifaire » ?
+## Fonctionnalités principales
 
-Décision documentée :
+- 🏆 **Indice de publication** : score /100 sur 4 piliers pondérés, classement des 19 banques agréées.
+- 🔎 **Comparateur tarifaire** : sélection banques × services, meilleur/pire tarif surligné (175 lignes normalisées HT).
+- 🏛️ **Profil banque** : identité, actionnariat, grille tarifaire, statuts de publication, sources cliquables.
+- 📊 **Benchmark tarifaire** : virements SYSTAC/SYGMA, cartes GIMAC/Visa, retraits GAB, banque à distance.
+- 🗺️ **Carte du marché** : 19 banques, sièges, actionnariat, statut de couverture.
+- 📚 **Méthodologie affichée** : pondérations, seuils, limites — rien n'est masqué.
 
-1. Les grilles tarifaires ne sont pas uniformes d'une banque à l'autre (segments, packages, canaux) ; plusieurs banques ne publient rien.
-2. Les données financières sont difficilement accessibles et publiées avec des délais tardifs.
-3. Comparer des prix sur une base hétérogène produirait un score trompeur.
+## Pourquoi pas de « score de compétitivité prix » ?
 
-→ Le projet mesure donc la **transparence** (ce qui est publié, vérifiable et à jour), une proxy de la qualité de gouvernance utile pour un client, un investisseur ou un régulateur.
+- Les grilles tarifaires ne sont pas uniformes (segments, packages, canaux) ; plusieurs banques ne publient rien.
+- Les données financières sont difficilement accessibles et publiées tardivement en zone CEMAC.
+- Comparer des prix sur une base hétérogène produirait un score trompeur.
 
-## Indice de transparence (4 piliers)
+→ Le projet mesure donc la **transparence** (ce qui est publié, vérifiable, à jour) : une proxy de gouvernance utile à un client, un investisseur ou un régulateur.
 
-| Pilier | Poids | Critères objectifs |
+## Indice de publication
+
+<details>
+<summary>Pondération des piliers</summary>
+
+| Poids | Pilier | Critères objectifs |
 | --- | --- | --- |
-| Tarifs | 30 % | Grille publique ? PDF téléchargeable ? À jour ? Granularité particuliers/pros ? |
-| Finance | 30 % | Comptes publiés ? Délai de publication ? Auditeur (Big 4 / cabinet local) ? |
-| Digital | 20 % | Site fonctionnel ? App mobile notée ? Réseaux sociaux actifs ? |
-| Gouvernance | 20 % | Actionnariat public ? Dirigeants identifiés ? Rapport annuel narratif ? |
+| 30% | Tarifs | Grille publique ? PDF téléchargeable ? À jour (< 12 mois) ? Granularité particuliers/pros ? |
+| 30% | Finance | Comptes publiés ? Délai de publication ? Auditeur (Big 4 / cabinet local) ? |
+| 20% | Digital | Site fonctionnel ? App mobile notée ? Réseaux sociaux actifs ? |
+| 20% | Gouvernance | Actionnariat public ? Dirigeants identifiés ? Rapport annuel narratif ? |
 
-Chaque critère est binaire ou ordinal et **sourcé** ; aucun critère n'est estimé.
+</details>
 
-## Périmètre : les 19 banques agréées
+<details>
+<summary>Signaux de publication</summary>
 
-| Code | Banque | Siège | Tarifs publics |
-| --- | --- | --- | --- |
-| ACCESS | Access Bank | Douala | ✅ documentés |
-| AGB | Africa Golden Bank | Douala | ✅ documentés |
-| AFRILAND | Afriland First Bank | Douala | ✅ documentés |
-| AFG | AFG Bank Cameroun | Douala | ✅ documentés |
-| BICEC | BICEC | Douala | ✅ documentés |
-| CBC | Commercial Bank | Douala | ✅ documentés |
-| CCA | CCA-BANK | Douala | ✅ documentés |
-| SCB | SCB Cameroun | Douala | ✅ documentés |
-| SGC | Société Générale Cameroun | Douala | ✅ documentés |
-| UBA | UBA Cameroun | Douala | ✅ documentés |
-| BANGE | BANGE Bank Cameroun | Yaoundé | ⬜ à collecter |
-| BCPME | BC-PME | Douala | ⬜ à collecter |
-| BGFI | BGFIBANK Cameroun | Douala | ⬜ à collecter |
-| CITI | Citibank Cameroun | Douala | ⬜ à collecter |
-| ECOBANK | Ecobank Cameroun | Douala | ⬜ à collecter |
-| REGIONALE | La Régionale Bank | Yaoundé | ⬜ à collecter |
-| NFC | NFC-Bank | Yaoundé | ⬜ à collecter |
-| SCBC | Standard Chartered Bank Cameroon | Douala | ⬜ à collecter |
-| UBC | Union Bank of Cameroon | Douala | ⬜ à collecter |
+| Signal | Sévérité |
+| --- | --- |
+| Aucune grille tarifaire publique | 🔴 |
+| Aucune information financière publiée | 🔴 |
+| Grille tarifaire > 12 mois | 🟡 |
+| Aucune app mobile notée | 🟡 |
+| Grille publique à jour + comptes publiés | 🟢 |
 
-## Fonctionnalités
+</details>
 
-- 🏆 Classement de transparence des 19 banques.
-- 🔎 Comparateur tarifaire (10 banques documentées), meilleur/pire en couleur.
-- 🏛️ Profil banque : identité, grille, sources, statut de publication.
-- 📊 Benchmark tarifaire par service (SYSTAC, cartes, retraits GAB…).
-- 🗺️ Carte du marché : sièges, actionnariat, statut de transparence.
-- 📚 Méthodologie et limites en toute transparence.
+Chaque critère est binaire ou ordinal et **sourcé** ; un pilier absent n'est pas compté 0 : il est exclu du calcul et signalé dans la couverture.
+
+## Démarrage rapide
+
+```bash
+git clone https://github.com/maxin-dac/cameroon-banking-benchmark.git
+cd cameroon-banking-benchmark
+pip install -r requirements.txt
+python scripts/init_database.py
+python scripts/load_banks.py
+python scripts/build_tariffs.py --clean
+python scripts/import_tariffs.py
+python scripts/seed_publication_criteria.py
+streamlit run streamlit_app/app.py
+```
 
 ## Sources des données (module tarifs)
 
-Collecte **100 % manuelle** sur les brochures publiques officielles (aucun scraping). Observation : **2026-06-22**.
+Collecte **100 % manuelle**, aucun scraping. Observation : **août 2026**.
 
-| Banque | Source officielle | Période |
+| Banque | Source | Période |
 | --- | --- | --- |
 | Access Bank | [Quarterly Banking Conditions](https://cameroon.accessbankplc.com/access/media/Media-PDF-Attachment/Quarterly-Banking-Conditions.pdf) | T3 2026 |
 | Afriland First Bank | [Tarification Particuliers 2026](https://www.afrilandfirstbank.com/wp-content/uploads/2026/07/Tarification_AFB_Particulier_2026-2.pdf) | 2026 |
@@ -100,37 +105,22 @@ Collecte **100 % manuelle** sur les brochures publiques officielles (aucun scrap
 | UBA | [Conditions de banque](https://www.ubacameroon.com/wp-content/uploads/sites/8/2026/08/CONDITIONS-DE-BANQUE-APPLICABLES-A-LA-CLIENTELE-JUILLET-SEPTEMBRE-2026.pdf) | Juil.–Sept. 2026 |
 | Africa Golden Bank | [Condition de banque T2 2025](https://africagoldenbank.com/wp-content/uploads/2025/06/CONDITION-DE-BANQUE-2e-trimestre-2025.pdf) | T2 2025 |
 | AFG Bank | [Grille tarifaire Juillet 2026](https://afgbank.cm/files/2026/07/Press-Version-Press-CONDITION-FR-2026-Juillet.pdf) | 01/07/2026 |
+| 9 autres banques agréées | Collecte manuelle (sites, COBAC, presse) | en cours |
 
-## Éthique & conformité
+## La transparence par conception
 
-- ✅ Collecte manuelle depuis des sources publiques officielles — **aucun scraping**, respect des CGU et de la loi n°2010/012 sur la cybersécurité.
-- ✅ Aucune donnée personnelle, aucun secret bancaire : uniquement des tarifs publics.
-- ✅ Traçabilité : chaque ligne de la base porte sa source et sa date de consultation.
-- ⚠️ Outil d'aide à la décision : ne remplace pas une étude approfondie ni les conditions officielles des banques.
+- **Pas de scraping** : collecte manuelle depuis des sources publiques officielles, dans le respect des CGU et de la loi n°2010/012 sur la cybersécurité.
+- **Traçabilité** : chaque ligne porte sa source et sa date de consultation.
+- **Honnêteté** : une donnée manquante est affichée comme telle, jamais estimée ni comblée artificiellement.
+- **Pas de données personnelles**, pas de secret bancaire : uniquement des tarifs publics.
+- **Outil d'aide à la décision** : ne remplace pas une étude approfondie ni les conditions officielles des banques.
 
 ## Limites
 
-- Observation ponctuelle (2026-06-22) : les tarifs peuvent évoluer.
-- En zone CEMAC, la culture du reporting public est faible : certaines banques ne publient rien → leur indice de transparence sera faible, ce qui est un résultat en soi, pas un bug.
-- L'indice mesure la transparence, pas la qualité ou la solidité de la banque.
-
-## Démarrage rapide
-
-```bash
-git clone https://github.com/maxin-dac/cameroon-banking-benchmark.git
-cd cameroon-banking-benchmark
-pip install -r requirements.txt
-streamlit run streamlit_app/app.py
-```
-
-Pipeline de données :
-
-```bash
-python scripts/build_tariffs.py --clean   # reconstruit le CSV normalisé (175 lignes)
-python scripts/init_database.py           # crée la base SQLite
-python scripts/load_banks.py              # charge le référentiel des 19 banques
-python scripts/import_tariffs.py          # importe les tarifs
-```
+- Observation ponctuelle (août 2026) : les tarifs peuvent évoluer.
+- Culture du reporting public faible en zone CEMAC : certaines banques ne publient rien → un indice bas est un résultat, pas un bug.
+- L'indice mesure la transparence, pas la qualité ou la solidité d'une banque.
+- Comparaisons tarifaires limitées aux 10 banques documentées et au panier particuliers normalisé.
 
 ## Structure du projet
 
@@ -138,41 +128,40 @@ python scripts/import_tariffs.py          # importe les tarifs
 cameroon-banking-benchmark/
 ├── analytics/
 │   ├── labels.py               # libellés FR des services et canaux
-│   ├── scoring.py              # panier tarifaire et comparaisons
-│   └── transparency.py         # indice de transparence (4 piliers)
+│   ├── publication_index.py    # indice de publication (4 piliers)
+│   └── scoring.py              # panier tarifaire et comparaisons
 ├── data/
-│   ├── db/                     # artefact local (gitignoré)
-│   ├── reference/
-│   │   └── banks_reference.csv # référentiel des 19 banques agréées
-│   └── processed/
-│       └── tariffs/
-│           └── tariffs_all_banks.csv
+│   ├── db/                     # SQLite locale (gitignorée)
+│   ├── processed/tariffs/      # tariffs_all_banks.csv (175 lignes HT)
+│   ├── raw/documents/          # PDF sources (gitignorés)
+│   └── reference/              # banks_reference.csv (19 banques), publication_criteria.csv
 ├── scripts/
 │   ├── build_tariffs.py        # source de vérité des tarifs normalisés
-│   ├── init_database.py
-│   ├── load_banks.py
-│   └── import_tariffs.py
+│   ├── import_tariffs.py       # import + contrôles de validité
+│   ├── init_database.py        # schéma SQLite
+│   ├── load_banks.py           # référentiel des 19 banques
+│   └── seed_publication_criteria.py
 ├── streamlit_app/
 │   ├── app.py                  # vue d'ensemble
-│   ├── pages/                  # comparateur, profil, benchmark, transparence, méthodo
-│   ├── ui/render.py            # composants HTML injectés
-│   └── assets/                 # theme.css + templates HTML
+│   ├── assets/                 # theme.css + templates HTML (design system)
+│   ├── pages/                  # comparateur, profil, benchmark, indice, méthodologie
+│   └── ui/render.py            # composants HTML injectés
 ├── .gitignore
 ├── requirements.txt
 ├── LICENSE
-├── README_FR.txt
-└── README_EN.txt
+├── README.md
+└── README_EN.md
 ```
 
 ## Feuille de route
 
 - [x] Référentiel des 19 banques agréées (noms légaux, sièges, actionnariat)
 - [x] Normalisation tarifaire de 10 banques (175 lignes HT)
-- [x] Dashboard Streamlit v1 (comparateur, profil, benchmark)
-- [ ] 🚧 Indice de transparence (4 piliers) + classement des 19 banques
-- [ ] Collecte financière (comptes publiés, délais, auditeurs)
+- [x] Dashboard Streamlit v1 (5 pages, thème personnalisé)
+- [x] Indice de publication (4 piliers) + classement
+- [ ] 🚧 Collecte financière (comptes publiés, délais, auditeurs)
 - [ ] Collecte digitale (site, app mobile, réseaux sociaux)
-- [ ] Carte du marché (sièges, actionnariat, gouvernance)
+- [ ] Carte du marché (actionnariat, gouvernance)
 - [ ] Déploiement Streamlit Cloud
 
 ## Auteur
@@ -190,4 +179,4 @@ cameroon-banking-benchmark/
 
 ## Licence
 
-Projet distribué sous licence MIT (voir fichier `LICENSE`). Données issues des brochures tarifaires publiques des banques citées, fournies à des fins d'analyse et de comparaison.
+Projet distribué sous licence MIT. Données extraites des brochures tarifaires publiques des banques citées, fournies à des fins d'analyse et de comparaison.

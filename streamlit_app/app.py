@@ -3,58 +3,87 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+import pandas as pd
+import plotly.graph_objects as go
 import streamlit as st
 
-from analytics import scoring
+from analytics import publication_index as pi
 from ui import render
 
 render.init("Vue d'ensemble")
+
 render.page_header(
-    "Vue d'ensemble",
-    "Compétitivité tarifaire des banques camerounaises",
-    "Score 0-100 : plus le score est élevé, plus la banque est compétitive sur le panier standard particuliers.",
+    "Observatoire",
+    "Transparence bancaire au Cameroun",
+    "Qui publie quoi, et depuis quand ? Mesure factuelle de la disponibilité des informations publiques des 19 banques agréées.",
 )
 
-ranking = scoring.compute_ranking()
-standards = scoring.market_standards()
+ranked, unranked = pi.compute_index()
 
-conn = scoring.connect()
-n_services = conn.execute("SELECT COUNT(DISTINCT service_key) FROM tariffs").fetchone()[0]
-bank_names = {r["bank_code"]: r["bank_name"] for r in conn.execute("SELECT bank_code, bank_name FROM banks")}
-conn.close()
+tariffs_path = Path(__file__).resolve().parents[1] / "data" / "processed" / "tariffs" / "tariffs_all_banks.csv"
+n_tariff_rows = 0
+n_tariff_banks = 0
+if tariffs_path.exists():
+    df_t = pd.read_csv(tariffs_path)
+    n_tariff_rows = len(df_t)
+    n_tariff_banks = df_t["bank_code"].nunique()
 
 c1, c2, c3, c4 = st.columns(4)
 with c1:
-    render.kpi("Banques couvertes", "10", "Référentiel particuliers", "accent", "🏦")
+    render.kpi("Banques agréées", "19", "Référentiel COBAC", "accent", "🏦")
 with c2:
-    render.kpi("Services suivis", str(n_services), "Grilles tarifaires HT", "accent", "🧾")
+    render.kpi("Banques documentées", str(n_tariff_banks), "Grilles tarifaires publiques", "success", "📄")
 with c3:
-    render.kpi("Banque la plus compétitive", ranking[0]["bank_code"], f"Score {ranking[0]['score']}", "success", "🏆")
+    render.kpi("Lignes tarifaires", str(n_tariff_rows), "Normalisées HT", "success", "🧾")
 with c4:
-    avg_cov = round(sum(r["coverage"] for r in ranking) / len(ranking), 1)
-    render.kpi("Couverture moyenne", f"{avg_cov}/10", "Panier standard", "warning", "📊")
+    render.kpi("Évaluées (indice)", str(len(ranked)), "Couverture ≥ 4 critères", "warning", "🏆")
 
-render.section("Classement général")
+render.section("Indice de publication (0–100)")
 
-ranked = [r for r in ranking if r["rank"]]
-rows = "".join(
-    f'<div class="rank-row">'
-    f'<span class="rank-pos">{r["rank"]}</span>'
-    f'<span class="rank-bank">{bank_names.get(r["bank_code"], r["bank_code"])}</span>'
-    f'<div class="rank-bar"><div class="rank-fill" style="width:{r["score"]}%"></div></div>'
-    f'<span class="rank-score">{r["score"]}</span>'
-    f'</div>'
-    for r in ranked
+if ranked:
+    fig = go.Figure(go.Bar(
+        x=[r["index"] for r in ranked],
+        y=[r["bank_name"] for r in ranked],
+        orientation="h",
+        marker_color=["#059669" if r["index"] >= 75 else "#d97706" for r in ranked],
+        marker_cornerradius=6,
+        text=[f"{r['index']}" for r in ranked],
+        textposition="outside",
+    ))
+    render.style_fig(fig)
+    st.plotly_chart(fig, use_container_width=True)
+
+    detail = pd.DataFrame([
+        {
+            "Banque": r["bank_name"],
+            "Indice": r["index"],
+            "Couverture": f"{r['coverage']}/12",
+            "Tarifs": r["pillars"].get("tarifs"),
+            "Finance": r["pillars"].get("finance"),
+            "Digital": r["pillars"].get("digital"),
+            "Gouvernance": r["pillars"].get("gouvernance"),
+        }
+        for r in ranked
+    ]).fillna("—")
+    st.dataframe(detail, hide_index=True, use_container_width=True)
+else:
+    render.empty_state(
+        "Pas encore de données",
+        "Exécutez scripts/seed_publication_criteria.py puis complétez la collecte.",
+    )
+
+if unranked:
+    render.callout(
+        "warning",
+        f"Non évaluées ({len(unranked)})",
+        " - ".join(r["bank_name"] for r in unranked) + " : collecte en cours (couverture < 4 critères).",
+    )
+
+render.callout(
+    "info",
+    "Méthode",
+    "Indice = moyenne pondérée des piliers renseignés (Tarifs 30 %, Finance 30 %, Digital 20 %, Gouvernance 20 %). "
+    "Chaque critère est binaire et sourcé ; un pilier absent n'est pas compté 0 : il est exclu du calcul et signalé dans la couverture.",
 )
-st.markdown(f'<div class="rank-list">{rows}</div>', unsafe_allow_html=True)
-
-excluded = [r for r in ranking if not r["rank"]]
-if excluded:
-    names = ", ".join(bank_names.get(r["bank_code"], r["bank_code"]) for r in excluded)
-    render.callout("warning", "Non classées (couverture insuffisante)", names)
-
-if standards:
-    body = " - ".join(f"{label} : {v:,.0f} XAF partout" for label, v in standards)
-    render.callout("info", "Standards du marché (exclus du score)", body)
 
 render.disclaimer()
