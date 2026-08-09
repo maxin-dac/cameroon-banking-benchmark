@@ -1,0 +1,59 @@
+bank_code,pillar,criterion_id,criterion_label,value,source_url,observation_date,notes
+ACCESS,tarifs,T1_grille_publique,Grille tarifaire publique disponible,1,https://cameroon.accessbankplc.com/access/media/Media-PDF-Attachment/Quarterly-Banking-Conditions.pdf,2026-08-09,
+ACCESS,tarifs,T2_grille_a_jour,Grille tarifaire à jour (< 12 mois),1,https://cameroon.accessbankplc.com/access/media/Media-PDF-Attachment/Quarterly-Banking-Conditions.pdf,2026-08-09,
+ACCESS,tarifs,T3_granularite,Granularité particuliers + entreprises,1,https://cameroon.accessbankplc.com/access/media/Media-PDF-Attachment/Quarterly-Banking-Conditions.pdf,2026-08-09,
+ACCESS,digital,D1_site_web,Site web officiel fonctionnel,1,https://cameroon.accessbankplc.com/,2026-08-09,
+ACCESS,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Access Bank Group (Nigéria)
+AGB,tarifs,T1_grille_publique,Grille tarifaire publique disponible,1,https://africagoldenbank.com/wp-content/uploads/2025/06/CONDITION-DE-BANQUE-2e-trimestre-2025.pdf,2026-08-09,
+AGB,tarifs,T2_grille_a_jour,Grille tarifaire à jour (< 12 mois),0,https://africagoldenbank.com/wp-content/uploads/2025/06/CONDITION-DE-BANQUE-2e-trimestre-2025.pdf,2026-08-09,Grille de plus de 12 mois
+AGB,tarifs,T3_granularite,Granularité particuliers + entreprises,1,https://africagoldenbank.com/wp-content/uploads/2025/06/CONDITION-DE-BANQUE-2e-trimestre-2025.pdf,2026-08-09,
+AGB,digital,D1_site_web,Site web officiel fonctionnel,1,https://africagoldenbank.com/,2026-08-09,
+AGB,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Indépendant
+AFRILAND,tarifs,T1_grille_publique,Grille tarifaire publique disponible,1,https://www.afrilandfirstbank.com/wp-content/uploads/2026/07/Tarification_AFB_Particulier_2026-2.pdf,2026-08-09,
+AFRILAND,tarifs,T2_grille_a_jour,Grille tarifaire à jour (< 12 mois),1,https://www.afrilandfirstbank.com/wp-content/uploads/2026/07/Tarification_AFB_Particulier_2026-2.pdf,2026-08-09,
+AFRILAND,tarifs,T3_granularite,Granularité particuliers + entreprises,1,https://www.afrilandfirstbank.com/wp-content/uploads/2026/07/Tarification_AFB_Particulier_2026-2.pdf,2026-08-09,
+AFRILAND,digital,D1_site_web,Site web officiel fonctionnel,1,https://www.afrilandfirstbank.com/,2026-08-09,
+AFRILAND,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Afriland First Group
+AFG,tarifs,T1_grille_publique,Grille tarifaire publique disponible,1,https://afgbank.cm/files/2026/07/Press-Version-Press-CONDITION-FR-2026-Juillet.pdf,2026-08-09,
+AFG,tarifs,T2_grille_a_jour,Grille tarifaire à jour (< 12 mois),1,https://afgbank.cm/files/2026/07/Press-Version-Press-CONDITION-FR-2026-Juillet.pdf,2026-08-09,
+AFG,tarifs,T3_granularite,Granularité particuliers + entreprises,1,https://afgbank.cm/files/2026/07/Press-Version-Press-CONDITION-FR-2026-Juillet.pdf,2026-08-09,
+AFG,digital,D1_site_web,Site web officiel fonctionnel,1,https://afgbank.cm/,2026-08-09,
+AFG,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Atlantic Financial Group
+BICEC,tarifs,T1_grille_publique,Grille tarifaire publique disponible,1,https://www.bicec.com/pdf/BICEC_Conditions%20de%20banque_Particuliers_VA-VF_Mars2026.pdf,2026-08-09,
+BICEC,tarifs,T2_grille_a_jour,Grille tarifaire à jour (< 12 mois),1,https://www.bicec.com/pdf/BICEC_Conditions%20de%20banque_Particuliers_VA-VF_Mars2026.pdf,2026-08-09,
+BICEC,tarifs,T3_granularite,Granularité particuliers + entreprises,1,https://www.bicec.com/pdf/BICEC_Conditions%20de%20banque_Particuliers_VA-VF_Mars2026.pdf,2026-08-09,
+BICEC,digital,D1_site_web,Site web officiel fonctionnel,1,https://www.bicec.com/,2026-08-09,
+BICEC,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Groupe BPCE (France)
+CBC,tarifs,T1_grille_publique,Grille tarifaire publique disponible,1,https://commercialbank-cm.com/wp-content/uploads/2019/09/CB-PARTICULIERS-OCT-2025.pdf,2026-08-09,
+CBC,tarifs,T2_grille_a_jour,Grille tarifaire à jour (< 12 mois),1,https://commercialbank-cm.com/wp-content/uploads/2019/09/CB-PARTICULIERS-OCT-2025.pdf,2026-08-09,
+CBC,tarifs,T3_granularite,Granularité particuliers + entreprises,1,https://commercialbank-cm.com/wp-content/uploads/2019/09/CB-PARTICULIERS-OCT-2025.pdf,2026-08-09,
+CBC,digital,D1_site_web,Site web officiel fonctionnel,1,https://commercialbank-cm.com/,2026-08-09,
+CBC,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Indépendant
+CCA,tarifs,T1_grille_publique,Grille tarifaire publique disponible,1,https://www.cca-bank.com/assets/tarifaires/cca-bank-tarifaire-2e-trimestre-2026-fr.pdf,2026-08-09,
+CCA,tarifs,T2_grille_a_jour,Grille tarifaire à jour (< 12 mois),1,https://www.cca-bank.com/assets/tarifaires/cca-bank-tarifaire-2e-trimestre-2026-fr.pdf,2026-08-09,
+CCA,tarifs,T3_granularite,Granularité particuliers + entreprises,1,https://www.cca-bank.com/assets/tarifaires/cca-bank-tarifaire-2e-trimestre-2026-fr.pdf,2026-08-09,
+CCA,digital,D1_site_web,Site web officiel fonctionnel,1,https://www.cca-bank.com/fr,2026-08-09,
+CCA,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Groupe CCA
+SCB,tarifs,T1_grille_publique,Grille tarifaire publique disponible,1,https://www.scbcameroun.net/conditions-tarifaires-scbcameroun/29-les-conditions-de-banque-du-t2-2026/file,2026-08-09,
+SCB,tarifs,T2_grille_a_jour,Grille tarifaire à jour (< 12 mois),1,https://www.scbcameroun.net/conditions-tarifaires-scbcameroun/29-les-conditions-de-banque-du-t2-2026/file,2026-08-09,
+SCB,tarifs,T3_granularite,Granularité particuliers + entreprises,1,https://www.scbcameroun.net/conditions-tarifaires-scbcameroun/29-les-conditions-de-banque-du-t2-2026/file,2026-08-09,
+SCB,digital,D1_site_web,Site web officiel fonctionnel,1,https://www.scbcameroun.net/,2026-08-09,
+SCB,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Groupe Attijariwafa bank (Maroc)
+SGC,tarifs,T1_grille_publique,Grille tarifaire publique disponible,1,https://particuliers.societegenerale.cm/fileadmin/user_upload/Cameroun/PDF/2026/T3_-_2026/CLIPRI-T-3-2026-60X80-VF.pdf,2026-08-09,
+SGC,tarifs,T2_grille_a_jour,Grille tarifaire à jour (< 12 mois),1,https://particuliers.societegenerale.cm/fileadmin/user_upload/Cameroun/PDF/2026/T3_-_2026/CLIPRI-T-3-2026-60X80-VF.pdf,2026-08-09,
+SGC,tarifs,T3_granularite,Granularité particuliers + entreprises,1,https://particuliers.societegenerale.cm/fileadmin/user_upload/Cameroun/PDF/2026/T3_-_2026/CLIPRI-T-3-2026-60X80-VF.pdf,2026-08-09,
+SGC,digital,D1_site_web,Site web officiel fonctionnel,1,https://societegenerale.cm/fr/,2026-08-09,
+SGC,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Groupe Société Générale (France)
+UBA,tarifs,T1_grille_publique,Grille tarifaire publique disponible,1,https://www.ubacameroon.com/wp-content/uploads/sites/8/2026/08/CONDITIONS-DE-BANQUE-APPLICABLES-A-LA-CLIENTELE-JUILLET-SEPTEMBRE-2026.pdf,2026-08-09,
+UBA,tarifs,T2_grille_a_jour,Grille tarifaire à jour (< 12 mois),1,https://www.ubacameroon.com/wp-content/uploads/sites/8/2026/08/CONDITIONS-DE-BANQUE-APPLICABLES-A-LA-CLIENTELE-JUILLET-SEPTEMBRE-2026.pdf,2026-08-09,
+UBA,tarifs,T3_granularite,Granularité particuliers + entreprises,1,https://www.ubacameroon.com/wp-content/uploads/sites/8/2026/08/CONDITIONS-DE-BANQUE-APPLICABLES-A-LA-CLIENTELE-JUILLET-SEPTEMBRE-2026.pdf,2026-08-09,
+UBA,digital,D1_site_web,Site web officiel fonctionnel,1,https://www.ubacameroon.com/,2026-08-09,
+UBA,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,UBA Group (Nigéria)
+BANGE,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,BANGE (Guinée équatoriale)
+BGFI,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Groupe BGFI (Gabon)
+CITI,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Citigroup (États-Unis)
+ECOBANK,digital,D1_site_web,Site web officiel fonctionnel,1,https://www.ecobank.com,2026-08-09,
+ECOBANK,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Ecobank Transnational (Togo)
+REGIONALE,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Indépendant
+SCBC,digital,D1_site_web,Site web officiel fonctionnel,1,https://www.sc.com,2026-08-09,
+SCBC,gouvernance,G1_actionnariat_public,Actionnariat rendu public,1,banks_reference.csv,2026-08-09,Standard Chartered (Royaume-Uni)

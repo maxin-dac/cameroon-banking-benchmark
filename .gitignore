@@ -1,10 +1,6 @@
-cd "/d/Projets data & IA/cameroon-banking-benchmark"
-
-cat > .gitignore << 'EOF'
 __pycache__/
 *.py[cod]
 .env
 .venv/
 data/db/*.db
 data/raw/
-EOF
