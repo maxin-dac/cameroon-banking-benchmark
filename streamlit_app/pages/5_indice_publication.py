@@ -49,13 +49,13 @@ with c1:
             "Gouvernance": r["pillars"].get("gouvernance"),
         }
         for r in ranked
-    ]).fillna("—")
+    ]).fillna("-")
     st.dataframe(detail, hide_index=True, use_container_width=True)
 
 with c2:
     st.markdown("##### Non évaluées (collecte en cours)")
     for r in unranked:
-        st.markdown(f"- **{r['bank_name']}** — {r['coverage']}/12 critères")
+        st.markdown(f"- **{r['bank_name']}** - {r['coverage']}/12 critères")
 
 render.callout(
     "info",

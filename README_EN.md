@@ -1,8 +1,8 @@
-# 🏦 Cameroon Banking Benchmark — Banking Transparency Observatory
+# 🏦 Cameroon Banking Benchmark - Banking Transparency Observatory
 
 **Problem:** banking information in Cameroon is structurally opaque: heterogeneous or missing fee schedules, financial data published late (or never), and no reliable comparative view of the 19 licensed banks.
 
-**Solution:** an open-source, bilingual observatory that measures what is **verifiable** — publication of fees, financial information, digital presence and governance — for the 19 COBAC-licensed banks, using traced and dated official public sources.
+**Solution:** an open-source, bilingual observatory that measures what is **verifiable** - publication of fees, financial information, digital presence and governance - for the 19 COBAC-licensed banks, using traced and dated official public sources.
 
 <p align="left">
   <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
@@ -36,7 +36,7 @@
 - 🏛️ **Bank profile**: identity, ownership, fee grid, publication status, clickable sources.
 - 📊 **Tariff benchmark**: SYSTAC/SYGMA transfers, GIMAC/Visa cards, ATM withdrawals, remote banking.
 - 🗺️ **Market map**: 19 banks, headquarters, ownership, coverage status.
-- 📚 **Displayed methodology**: weights, thresholds, limits — nothing hidden.
+- 📚 **Displayed methodology**: weights, thresholds, limits - nothing hidden.
 
 ## Why no "price competitiveness score"?
 
@@ -121,7 +121,7 @@ streamlit run streamlit_app/app.py
 
 ## Author
 
-**Maxime NDACLEU** — Data Analyst & Business Intelligence Analyst
+**Maxime NDACLEU** - Data Analyst & Business Intelligence Analyst
 
 <p align="left">
   <a href="https://github.com/maxin-dac">

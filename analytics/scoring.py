@@ -57,7 +57,7 @@ def format_tariff(row):
     ):
         if row[f] is not None:
             return f"{row[f]:,.0f} {s}"
-    return "—"
+    return "-"
 
 
 def pick_row(conn, bank, keys):

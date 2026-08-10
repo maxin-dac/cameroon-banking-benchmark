@@ -34,11 +34,11 @@ CHANNEL_LABELS = {
     "atm": "GAB",
     "ussd": "USSD",
     "any": "Tous canaux",
-    "not_applicable": "—",
+    "not_applicable": "-",
 }
 
 def service_label(key):
     return SERVICE_LABELS.get(key, key)
 
 def channel_label(key):
-    return CHANNEL_LABELS.get(key, "—")
+    return CHANNEL_LABELS.get(key, "-")

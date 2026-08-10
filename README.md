@@ -1,8 +1,8 @@
-# 🏦 Cameroun Banking Benchmark — Observatoire de la Transparence Bancaire
+# 🏦 Cameroun Banking Benchmark - Observatoire de la Transparence Bancaire
 
 **Problème :** l'information bancaire camerounaise est structurellement opaque : grilles tarifaires hétérogènes voire absentes, données financières publiées tardivement (ou jamais), et aucune vue comparative fiable du marché des 19 banques agréées.
 
-**Solution :** un observatoire open source et bilingue qui mesure ce qui est **vérifiable** — la publication des tarifs, des informations financières, de la présence digitale et de la gouvernance — pour les 19 banques agréées par la COBAC, à partir de sources publiques officielles, tracées et datées.
+**Solution :** un observatoire open source et bilingue qui mesure ce qui est **vérifiable** - la publication des tarifs, des informations financières, de la présence digitale et de la gouvernance - pour les 19 banques agréées par la COBAC, à partir de sources publiques officielles, tracées et datées.
 
 <p align="left">
   <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
@@ -36,7 +36,7 @@
 - 🏛️ **Profil banque** : identité, actionnariat, grille tarifaire, statuts de publication, sources cliquables.
 - 📊 **Benchmark tarifaire** : virements SYSTAC/SYGMA, cartes GIMAC/Visa, retraits GAB, banque à distance.
 - 🗺️ **Carte du marché** : 19 banques, sièges, actionnariat, statut de couverture.
-- 📚 **Méthodologie affichée** : pondérations, seuils, limites — rien n'est masqué.
+- 📚 **Méthodologie affichée** : pondérations, seuils, limites - rien n'est masqué.
 
 ## Pourquoi pas de « score de compétitivité prix » ?
 
@@ -166,7 +166,7 @@ cameroon-banking-benchmark/
 
 ## Auteur
 
-**Maxime NDACLEU** — Data Analyst & Business Intelligence Analyst
+**Maxime NDACLEU** - Data Analyst & Business Intelligence Analyst
 
 <p align="left">
   <a href="https://github.com/maxin-dac">

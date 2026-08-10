@@ -64,7 +64,7 @@ if ranked:
             "Gouvernance": r["pillars"].get("gouvernance"),
         }
         for r in ranked
-    ]).fillna("—")
+    ]).fillna("-")
     st.dataframe(detail, hide_index=True, use_container_width=True)
 else:
     render.empty_state(

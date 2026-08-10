@@ -51,7 +51,7 @@ for key in sel_services:
     cells = [f'<th scope="row">{service_label(key)}</th>']
     for bank in sel_banks:
         if texts[bank] is None:
-            cells.append('<td><span class="pill muted">—</span></td>')
+            cells.append('<td><span class="pill muted">-</span></td>')
             continue
         cls = ""
         v = values[bank]
