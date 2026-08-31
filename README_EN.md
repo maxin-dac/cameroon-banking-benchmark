@@ -1,8 +1,8 @@
 # 🏦 Cameroon Banking Benchmark - Banking Transparency Observatory
 
-🚧 Work in progress
+🚧 ***Work in progress***
 
-Faced with financial opacity and heterogeneous fee schedules across the CEMAC zone in general and Cameroon in particular, we are developing a standardized comparative analysis framework. It is built on the normalization of 175 pre-tax fee lines collected from official sources. Still being finalized, this project will also integrate a comprehensive consolidation of regional banking regulation.
+Faced with financial opacity and the heterogeneity of pricing structures within the CEMAC zone in general and in Cameroon in particular, we are developing a standardized comparative analysis framework. This framework is based on the standardization of 175 pre-tax pricing lines collected from official sources. Still being finalized, this project will also incorporate a comprehensive consolidation of regional banking regulations.
 
 <p align="left">
   <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
