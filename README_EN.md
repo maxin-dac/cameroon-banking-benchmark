@@ -49,7 +49,7 @@ Faced with financial opacity and the heterogeneity of pricing structures within 
 ## Limitations
 
 - One-off observation (August 2026): fees may change.
-- Weak public reporting culture in the CEMAC zone: some banks publish nothing → a low index is a result, not a bug.
+- Weak public reporting culture in the CEMAC zone: some banks do not publish their fee schedule.
 - Tariff comparisons limited to the 10 documented banks and the normalized retail basket.
 
 ## Project structure

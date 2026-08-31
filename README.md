@@ -49,7 +49,7 @@ Collecte **100 % manuelle**, aucun scraping. Observation : **août 2026**.
 ## Limites
 
 - Observation ponctuelle (août 2026) : les tarifs peuvent évoluer.
-- Culture du reporting public faible en zone CEMAC : certaines banques ne publient rien → un indice bas est un résultat, pas un bug.
+- Culture du reporting public faible en zone CEMAC : certaines banques ne publient pas leur grille tarifaire.
 - Comparaisons tarifaires limitées aux 10 banques documentées et au panier particuliers normalisé.
 
 ## Structure du projet
