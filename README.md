@@ -1,8 +1,8 @@
 # 🏦 Cameroun Banking Benchmark - Observatoire de la Transparence Bancaire
 
-**Problème :** l'information bancaire camerounaise est structurellement opaque : grilles tarifaires hétérogènes voire absentes, données financières publiées tardivement (ou jamais), et aucune vue comparative fiable du marché des 19 banques agréées.
+> 🚧 ***Travail en cours***
 
-**Solution :** un observatoire open source et bilingue qui mesure ce qui est **vérifiable** - la publication des tarifs, des informations financières, de la présence digitale et de la gouvernance - pour les 19 banques agréées par la COBAC, à partir de sources publiques officielles, tracées et datées.
+Face à l'opacité financière et à l'hétérogénéité des grilles tarifaires au sein de la zone CEMAC en général et au Cameroun en particulier, nous développons un cadre d'analyse comparative standardisé. Il s'appuie sur la normalisation de 175 lignes tarifaires hors taxes collectées auprès de sources officielles. Toujours en cours de finalisation, ce projet intègrera également une consolidation globale de la réglementation bancaire régionale.
 
 <p align="left">
   <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
@@ -18,76 +18,7 @@
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
 </p>
 
-> 🚧 **Travail en cours** : module tarifaire opérationnel (10 banques) ; modules financier et digital en cours de collecte.
-
 🇬🇧 English : [README_EN.md](README_EN.md)
-
-## En bref
-
-- **Ce que ça fait** : évalue et compare les 19 banques agréées du Cameroun sur leur transparence (indice de publication) et compare les tarifs particuliers des 10 banques documentées sur un panier normalisé HT.
-- **Compétences mobilisées** : data engineering, collecte manuelle, normalisation tarifaire, construction d'indicateurs composites, data visualisation, UX bilingue, dashboarding.
-- **Démo** : bientôt en ligne (Streamlit Cloud).
-- **Stack** : Python · Streamlit · Plotly · Pandas · SQLite · HTML · CSS.
-
-## Fonctionnalités principales
-
-- 🏆 **Indice de publication** : score /100 sur 4 piliers pondérés, classement des 19 banques agréées.
-- 🔎 **Comparateur tarifaire** : sélection banques × services, meilleur/pire tarif surligné (175 lignes normalisées HT).
-- 🏛️ **Profil banque** : identité, actionnariat, grille tarifaire, statuts de publication, sources cliquables.
-- 📊 **Benchmark tarifaire** : virements SYSTAC/SYGMA, cartes GIMAC/Visa, retraits GAB, banque à distance.
-- 🗺️ **Carte du marché** : 19 banques, sièges, actionnariat, statut de couverture.
-- 📚 **Méthodologie affichée** : pondérations, seuils, limites - rien n'est masqué.
-
-## Pourquoi pas de « score de compétitivité prix » ?
-
-- Les grilles tarifaires ne sont pas uniformes (segments, packages, canaux) ; plusieurs banques ne publient rien.
-- Les données financières sont difficilement accessibles et publiées tardivement en zone CEMAC.
-- Comparer des prix sur une base hétérogène produirait un score trompeur.
-
-→ Le projet mesure donc la **transparence** (ce qui est publié, vérifiable, à jour) : une proxy de gouvernance utile à un client, un investisseur ou un régulateur.
-
-## Indice de publication
-
-<details>
-<summary>Pondération des piliers</summary>
-
-| Poids | Pilier | Critères objectifs |
-| --- | --- | --- |
-| 30% | Tarifs | Grille publique ? PDF téléchargeable ? À jour (< 12 mois) ? Granularité particuliers/pros ? |
-| 30% | Finance | Comptes publiés ? Délai de publication ? Auditeur (Big 4 / cabinet local) ? |
-| 20% | Digital | Site fonctionnel ? App mobile notée ? Réseaux sociaux actifs ? |
-| 20% | Gouvernance | Actionnariat public ? Dirigeants identifiés ? Rapport annuel narratif ? |
-
-</details>
-
-<details>
-<summary>Signaux de publication</summary>
-
-| Signal | Sévérité |
-| --- | --- |
-| Aucune grille tarifaire publique | 🔴 |
-| Aucune information financière publiée | 🔴 |
-| Grille tarifaire > 12 mois | 🟡 |
-| Aucune app mobile notée | 🟡 |
-| Grille publique à jour + comptes publiés | 🟢 |
-
-</details>
-
-Chaque critère est binaire ou ordinal et **sourcé** ; un pilier absent n'est pas compté 0 : il est exclu du calcul et signalé dans la couverture.
-
-## Démarrage rapide
-
-```bash
-git clone https://github.com/maxin-dac/cameroon-banking-benchmark.git
-cd cameroon-banking-benchmark
-pip install -r requirements.txt
-python scripts/init_database.py
-python scripts/load_banks.py
-python scripts/build_tariffs.py --clean
-python scripts/import_tariffs.py
-python scripts/seed_publication_criteria.py
-streamlit run streamlit_app/app.py
-```
 
 ## Sources des données (module tarifs)
 
@@ -119,7 +50,6 @@ Collecte **100 % manuelle**, aucun scraping. Observation : **août 2026**.
 
 - Observation ponctuelle (août 2026) : les tarifs peuvent évoluer.
 - Culture du reporting public faible en zone CEMAC : certaines banques ne publient rien → un indice bas est un résultat, pas un bug.
-- L'indice mesure la transparence, pas la qualité ou la solidité d'une banque.
 - Comparaisons tarifaires limitées aux 10 banques documentées et au panier particuliers normalisé.
 
 ## Structure du projet
@@ -127,42 +57,42 @@ Collecte **100 % manuelle**, aucun scraping. Observation : **août 2026**.
 ```text
 cameroon-banking-benchmark/
 ├── analytics/
-│   ├── labels.py               # libellés FR des services et canaux
-│   ├── publication_index.py    # indice de publication (4 piliers)
-│   └── scoring.py              # panier tarifaire et comparaisons
+│   ├── __init__.py
+│   ├── labels.py
+│   └── scoring.py              # comparaisons tarifaires (sans score global)
+├── assets/                     # css + templates html
 ├── data/
-│   ├── db/                     # SQLite locale (gitignorée)
-│   ├── processed/tariffs/      # tariffs_all_banks.csv (175 lignes HT)
-│   ├── raw/documents/          # PDF sources (gitignorés)
-│   └── reference/              # banks_reference.csv (19 banques), publication_criteria.csv
+│   ├── db/banking_benchmark.db
+│   ├── processed/tariffs/tariffs_all_banks.csv
+│   ├── raw/documents/          # PDF sources (gitignoré)
+│   └── reference/
+│       ├── banks_reference.csv
+│       ├── regulations_cemac.csv        # NOUVEAU (en cours de collecte)
+│       ├── institutions.csv             # NOUVEAU
+│       ├── market_indicators_template.csv   # NOUVEAU (en cours de collecte)
+│       └── bank_governance_template.csv     # NOUVEAU (organigrammes)
+├── pages/
+│   ├── 1_comparateur.py
+│   ├── 2_profil_banque.py      # + organigramme
+│   ├── 3_benchmark_tarifaire.py
+│   ├── 4_methodologie.py
+│   ├── 5_cadre_juridique.py    # NOUVEAU
+│   └── 6_marche_bancaire.py    # NOUVEAU
 ├── scripts/
-│   ├── build_tariffs.py        # source de vérité des tarifs normalisés
-│   ├── import_tariffs.py       # import + contrôles de validité
-│   ├── init_database.py        # schéma SQLite
-│   ├── load_banks.py           # référentiel des 19 banques
-│   └── seed_publication_criteria.py
-├── streamlit_app/
-│   ├── app.py                  # vue d'ensemble
-│   ├── assets/                 # theme.css + templates HTML (design system)
-│   ├── pages/                  # comparateur, profil, benchmark, indice, méthodologie
-│   └── ui/render.py            # composants HTML injectés
-├── .gitignore
+│   ├── build_tariffs.py
+│   ├── import_tariffs.py
+│   ├── init_database.py        
+│   ├── load_banks.py
+│   ├── import_regulations.py   # NOUVEAU
+│   └── import_market.py        # NOUVEAU
+├── ui/
+│   ├── __init__.py
+│   └── render.py
+├── app.py                      # racine
+├── README.md / README_EN.md
 ├── requirements.txt
-├── LICENSE
-├── README.md
-└── README_EN.md
+└── LICENSE
 ```
-
-## Feuille de route
-
-- [x] Référentiel des 19 banques agréées (noms légaux, sièges, actionnariat)
-- [x] Normalisation tarifaire de 10 banques (175 lignes HT)
-- [x] Dashboard Streamlit v1 (5 pages, thème personnalisé)
-- [x] Indice de publication (4 piliers) + classement
-- [ ] 🚧 Collecte financière (comptes publiés, délais, auditeurs)
-- [ ] Collecte digitale (site, app mobile, réseaux sociaux)
-- [ ] Carte du marché (actionnariat, gouvernance)
-- [ ] Déploiement Streamlit Cloud
 
 ## Auteur
 
