@@ -11,6 +11,10 @@ from ui import render
 
 render.init("Vue d'ensemble")
 
+from ui.version import get_version
+
+st.sidebar.caption(f"Version {get_version()}")
+
 render.page_header(
     "Observatoire",
     "Le secteur bancaire camerounais, en données publiques",
