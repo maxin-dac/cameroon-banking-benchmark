@@ -19,6 +19,11 @@ CREATE TABLE IF NOT EXISTS banks (
     tariff_effective_date TEXT,
     coverage_priority TEXT,
     data_collection_status TEXT,
+    mobile_banking_app TEXT,
+    orange_money_integration TEXT,
+    mtn_momo_integration TEXT,
+    opening_hours_published TEXT,
+    opening_hours_source TEXT,
     notes TEXT,
     created_at TEXT NOT NULL DEFAULT (datetime('now')),
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
@@ -79,6 +84,79 @@ ON tariffs (fee_nature);
 
 CREATE INDEX IF NOT EXISTS idx_tariffs_service_key
 ON tariffs (service_key);
+
+-- ============================================================
+-- Nouvelles tables v2 — données factuelles comparatives
+-- ============================================================
+
+-- Réseau d'agences par ville/région
+CREATE TABLE IF NOT EXISTS network (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    bank_code TEXT NOT NULL,
+    region TEXT NOT NULL,
+    city TEXT NOT NULL,
+    agency_count INTEGER,
+    source TEXT,
+    observation_date TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (bank_code) REFERENCES banks(bank_code) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_network_bank
+ON network (bank_code);
+
+-- Matrice produits (présence/absence)
+CREATE TABLE IF NOT EXISTS products (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    bank_code TEXT NOT NULL,
+    product_category TEXT NOT NULL,
+    product_name TEXT NOT NULL,
+    available TEXT NOT NULL DEFAULT 'inconnu',
+    conditions_published TEXT DEFAULT 'non',
+    published_rate TEXT,
+    published_duration TEXT,
+    source TEXT,
+    observation_date TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (bank_code) REFERENCES banks(bank_code) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_products_bank
+ON products (bank_code, product_category);
+
+-- Fonctionnalités digitales (oui/non/inconnu)
+CREATE TABLE IF NOT EXISTS digital_features (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    bank_code TEXT NOT NULL,
+    feature_key TEXT NOT NULL,
+    feature_name TEXT NOT NULL,
+    available TEXT NOT NULL DEFAULT 'inconnu',
+    source TEXT,
+    observation_date TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (bank_code) REFERENCES banks(bank_code) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_digital_bank
+ON digital_features (bank_code, feature_key);
+
+-- Données financières publiées (ratios COBAC, taille bilan)
+CREATE TABLE IF NOT EXISTS financial_data (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    bank_code TEXT NOT NULL,
+    year INTEGER NOT NULL,
+    metric_key TEXT NOT NULL,
+    metric_name TEXT NOT NULL,
+    value REAL,
+    unit TEXT NOT NULL,
+    source TEXT,
+    publication_date TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (bank_code) REFERENCES banks(bank_code) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_financial_bank_year
+ON financial_data (bank_code, year, metric_key);
 """
 
 
@@ -87,10 +165,24 @@ def main() -> None:
 
     conn = sqlite3.connect(DB_PATH)
     conn.executescript(SCHEMA)
+
+    # Migrations de schéma : ajouter les colonnes manquantes dans 'banks'
+    existing_cols = {r[1] for r in conn.execute("PRAGMA table_info(banks)").fetchall()}
+    new_cols = [
+        ("mobile_banking_app", "TEXT"),
+        ("orange_money_integration", "TEXT"),
+        ("mtn_momo_integration", "TEXT"),
+        ("opening_hours_published", "TEXT"),
+        ("opening_hours_source", "TEXT"),
+    ]
+    for col_name, col_type in new_cols:
+        if col_name not in existing_cols:
+            conn.execute(f"ALTER TABLE banks ADD COLUMN {col_name} {col_type}")
+
     conn.commit()
     conn.close()
 
-    print(f"Base de données initialisée : {DB_PATH}")
+    print(f"Base de données initialisée et synchronisée : {DB_PATH}")
 
 
 if __name__ == "__main__":

@@ -79,3 +79,14 @@ def style_fig(fig):
     fig.update_xaxes(showgrid=False, linecolor="#e5e9f2")
     fig.update_yaxes(showgrid=True, gridcolor="#edf1f7", linecolor="#e5e9f2")
     return fig
+
+
+def presence_badge(value: str) -> str:
+    """Retourne un badge HTML ✓/✗/? selon la valeur oui/non/inconnu."""
+    v = str(value).strip().lower()
+    if v == "oui":
+        return '<span class="presence-yes">✓</span>'
+    elif v == "non":
+        return '<span class="presence-no">✗</span>'
+    else:
+        return '<span class="presence-unknown">?</span>'

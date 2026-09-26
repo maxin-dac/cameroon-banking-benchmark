@@ -11,46 +11,38 @@ render.init("Méthodologie")
 
 render.page_header(
     "Méthodologie",
-    "Comment l'observatoire mesure la transparence",
-    "Périmètre, sources, règles de normalisation et limites : tout ce qui est affiché est traçable et vérifiable.",
+    "Ce que fait l'observatoire — et ce qu'il ne fait pas",
+    "Ce document présente des données publiques et déclaratives, "
+    "sans jugement de qualité ou de performance.",
 )
 
-render.section("Périmètre")
+render.section("Positionnement")
 st.markdown(
     """
-- **19 banques agréées** par la COBAC : référentiel complet (nom légal, siège, actionnariat, contact).
-- **10 banques documentées** pour le module tarifaire : grilles particuliers collectées manuellement
-  depuis les brochures publiques officielles.
-- **Particuliers uniquement** : salariés, non salariés, étudiants. Les grilles entreprises/corporate sont
-  hors périmètre.
+**Ce que fait l'observatoire :**
+- Collecte des données publiques : tarifs, réseau d'agences, produits proposés,
+  fonctionnalités digitales déclarées, ratios financiers publiés par la COBAC.
+- Les présente **côte à côte** dans des tableaux comparatifs factuels.
+- Trace chaque donnée à **sa source et sa date de consultation**.
+
+**Ce que l'observatoire ne fait PAS :**
+- ❌ Aucun classement, aucune note, aucun score.
+- ❌ Aucune interprétation de type « bon » ou « mauvais ».
+- ❌ Aucune estimation : une donnée absente est affichée comme telle, jamais comblée.
+- ❌ Aucune évaluation subjective de la « qualité de service ».
 """
 )
 
-render.section("Décision méthodologique : pas de score de compétitivité prix")
+render.section("Dimensions couvertes")
 st.markdown(
     """
-1. Les grilles tarifaires ne sont **pas uniformes** (segments, packages, canaux) et plusieurs banques
-   ne publient rien.
-2. Les données financières sont **difficilement accessibles** et publiées tardivement en zone CEMAC.
-3. Comparer des prix sur une base hétérogène produirait un score **trompeur**.
-
-→ Le projet mesure donc la **transparence** (ce qui est publié, vérifiable, à jour) : une proxy de
-gouvernance utile à un client, un investisseur ou un régulateur.
-"""
-)
-
-render.section("Indice de publication (0–100)")
-st.markdown(
-    """
-| Poids | Pilier | Critères objectifs |
+| Dimension | Données collectées | Type |
 | --- | --- | --- |
-| 30 % | Tarifs | Grille publique ? PDF téléchargeable ? À jour (< 12 mois) ? Granularité particuliers/pros ? |
-| 30 % | Finance | Comptes publiés ? Délai de publication ? Auditeur (Big 4 / cabinet local) ? |
-| 20 % | Digital | Site fonctionnel ? App mobile notée ? Réseaux sociaux actifs ? |
-| 20 % | Gouvernance | Actionnariat public ? Dirigeants identifiés ? Rapport annuel narratif ? |
-
-Chaque critère est **binaire ou ordinal et sourcé**. Un pilier absent n'est pas compté 0 : il est exclu
-du calcul et signalé dans la couverture (ex. « 5/12 critères »).
+| **Tarifs** | Grilles tarifaires particuliers normalisées HT | Montants chiffrés |
+| **Réseau & accessibilité** | Nombre d'agences par ville/région, mobile banking, mobile money, horaires | Chiffres + binaire (oui/non) |
+| **Offre produits** | Crédit immo, conso, PME, épargne, assurance, transfert international | Présence/absence |
+| **Digital** | Fonctionnalités app mobile (virement instantané, paiement marchand, etc.) | Binaire (oui/non) |
+| **Solidité financière** | Ratios COBAC publiés, taille bilan, dépôts, crédits | Chiffres publiés |
 """
 )
 
@@ -93,18 +85,18 @@ st.markdown(
 - Pas de scraping : collecte manuelle depuis des sources publiques officielles, dans le respect des CGU
   et de la loi n°2010/012 sur la cybersécurité.
 - Traçabilité : chaque ligne porte sa source et sa date de consultation.
-- Pas de données personnelles, pas de secret bancaire : uniquement des tarifs publics.
+- Pas de données personnelles, pas de secret bancaire : uniquement des données publiques.
 """
 )
 
 render.section("Limites")
 st.markdown(
     """
-- Observation ponctuelle (août 2026) : les tarifs peuvent évoluer.
-- Culture du reporting public faible en zone CEMAC : certaines banques ne publient rien → un indice bas
-  est un résultat, pas un bug.
-- L'indice mesure la transparence, pas la qualité ou la solidité d'une banque.
+- Observation ponctuelle (août 2026) : les tarifs et données peuvent évoluer.
+- Culture du reporting public faible en zone CEMAC : certaines banques ne publient rien
+  → une donnée absente est un résultat, pas un bug.
 - Comparaisons tarifaires limitées aux 10 banques documentées et au panier particuliers normalisé.
+- Les dimensions réseau, produits, digital et financière sont en cours de collecte.
 """
 )
 

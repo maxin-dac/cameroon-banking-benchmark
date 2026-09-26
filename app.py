@@ -7,6 +7,7 @@ sys.path.insert(0, str(ROOT))
 import pandas as pd
 import streamlit as st
 
+from analytics import compare
 from ui import render
 
 render.init("Vue d'ensemble")
@@ -18,8 +19,8 @@ st.sidebar.caption(f"Version {get_version()}")
 render.page_header(
     "Observatoire",
     "Le secteur bancaire camerounais, en données publiques",
-    "Tarifs particuliers normalisés, cadre réglementaire CEMAC et chiffres clés du marché. "
-    "Aucun score, aucune notation : uniquement des faits sourcés et datés.",
+    "Tarifs, réseau, produits, digital et ratios financiers : "
+    "des faits sourcés et datés, sans score ni classement.",
 )
 
 ref_path = ROOT / "data" / "reference" / "banks_reference.csv"
@@ -32,6 +33,14 @@ n_banks = len(banks) if not banks.empty else 19
 n_documented = tariffs["bank_code"].nunique() if not tariffs.empty else 0
 n_rows = len(tariffs)
 
+# Compter les dimensions avec des données
+conn = compare.connect()
+n_network = conn.execute("SELECT COUNT(*) c FROM network WHERE agency_count IS NOT NULL").fetchone()["c"]
+n_products = conn.execute("SELECT COUNT(*) c FROM products WHERE available != 'inconnu'").fetchone()["c"]
+n_digital = conn.execute("SELECT COUNT(*) c FROM digital_features WHERE available != 'inconnu'").fetchone()["c"]
+n_financial = conn.execute("SELECT COUNT(*) c FROM financial_data WHERE value IS NOT NULL").fetchone()["c"]
+conn.close()
+
 c1, c2, c3, c4 = st.columns(4)
 with c1:
     render.kpi("Banques agréées", str(n_banks), "Référentiel COBAC", "accent", "🏦")
@@ -40,7 +49,7 @@ with c2:
 with c3:
     render.kpi("Lignes tarifaires", str(n_rows), "Normalisées HT", "success", "🧾")
 with c4:
-    render.kpi("Observation", "08/2026", "Collecte manuelle", "warning", "🗓️")
+    render.kpi("Observation", "09/2026", "Collecte manuelle", "warning", "🗓️")
 
 render.section("Référentiel des banques agréées")
 
@@ -50,23 +59,41 @@ if not banks.empty:
 else:
     render.empty_state("Référentiel absent", "data/reference/banks_reference.csv introuvable.")
 
-render.section("Modules de l'observatoire")
+render.section("Dimensions de l'observatoire")
+
+st.markdown(
+    f"""
+| Dimension | Statut | Données |
+| --- | --- | --- |
+| **Tarifs** | ✅ {n_documented} banques documentées | {n_rows} lignes normalisées |
+| **Réseau & accessibilité** | {"✅" if n_network > 0 else "🔄"} En cours | {n_network} points de données |
+| **Offre produits** | {"✅" if n_products > 0 else "🔄"} En cours | {n_products} produits vérifiés |
+| **Digital** | {"✅" if n_digital > 0 else "🔄"} En cours | {n_digital} fonctionnalités vérifiées |
+| **Solidité financière** | {"✅" if n_financial > 0 else "🔄"} En cours | {n_financial} ratios publiés |
+"""
+)
+
+render.section("Pages de l'observatoire")
 
 st.markdown(
     """
 - **Comparateur** : tarifs particuliers comparés service par service (banques documentées).
-- **Profil banque** : identité, gouvernance publiée et grille tarifaire de chaque banque.
+- **Profil banque** : fiche factuelle complète — identité, réseau, produits, digital et tarifs.
+- **Réseau & accessibilité** : nombre d'agences par ville, mobile banking/money, horaires publiés.
+- **Offre produits** : matrice de présence/absence par catégorie de produit.
+- **Digital** : fonctionnalités app mobile listées objectivement (oui/non).
+- **Solidité financière** : ratios COBAC publiés, taille du bilan, dépôts, crédits.
+- **Méthodologie** : ce que fait l'observatoire et ce qu'il ne fait pas.
 - **Benchmark tarifaire** : visualisations par service du panier standard.
-- **Cadre réglementaire** *(en construction)* : conventions, règlements COBAC/CEMAC, instructions et institutions de supervision.
-- **Marché bancaire** *(en construction)* : total bilan, crédits, dépôts, créances en souffrance.
 """
 )
 
 render.callout(
     "info",
     "Positionnement",
-    "L'observatoire ne note pas les banques : il donne à voir des faits publics, tracés et datés. "
-    "Les modules financier et digital sont en cours de collecte.",
+    "Ce document présente des données publiques et déclaratives, "
+    "sans jugement de qualité ou de performance. "
+    "Aucun score, aucune notation, aucun classement.",
 )
 
 render.disclaimer()
