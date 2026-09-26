@@ -42,9 +42,11 @@ def main() -> None:
     # 1. Banks
     bank_rows = load_csv_data(BANKS_CSV, BANK_COLUMNS)
     if bank_rows:
+        update_set = ", ".join(f"{col} = excluded.{col}" for col in BANK_COLUMNS if col != "bank_code")
         sql = f"""
-        INSERT OR REPLACE INTO banks ({", ".join(BANK_COLUMNS)})
+        INSERT INTO banks ({", ".join(BANK_COLUMNS)})
         VALUES ({", ".join(["?"] * len(BANK_COLUMNS))})
+        ON CONFLICT(bank_code) DO UPDATE SET {update_set}
         """
         conn.executemany(sql, bank_rows)
         print(f"[OK] {len(bank_rows)} banques chargees / mises a jour.")

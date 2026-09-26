@@ -22,6 +22,10 @@ detail = compare.get_tariff_comparison(conn)
 conn.close()
 
 labels = {item_id: label for item_id, (label, vals, std) in detail.items()}
+if not labels:
+    render.empty_state("Données insuffisantes", "Aucun service tarifaire n'est disponible pour la comparaison.")
+    st.stop()
+
 choice = st.selectbox("Service du panier", list(labels.keys()), format_func=lambda x: labels[x])
 
 label, vals, std = detail[choice]
