@@ -18,9 +18,12 @@ def _read(rel: str) -> str:
 def init(page_title: str) -> None:
     st.set_page_config(
         page_title=f"{page_title} - CB Benchmark",
-        page_icon="🏦",
         layout="wide",
         initial_sidebar_state="expanded",
+    )
+    st.markdown(
+        """<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />""", 
+        unsafe_allow_html=True
     )
     st.markdown(f"<style>{_read('css/theme.css')}</style>", unsafe_allow_html=True)
     with st.sidebar:
@@ -82,11 +85,11 @@ def style_fig(fig):
 
 
 def presence_badge(value: str) -> str:
-    """Retourne un badge HTML ✓/✗/? selon la valeur oui/non/inconnu."""
+    """Retourne un badge HTML avec icone SVG (material) selon la valeur oui/non/inconnu."""
     v = str(value).strip().lower()
     if v == "oui":
-        return '<span class="presence-yes">✓</span>'
+        return '<span class="presence-yes"><span class="material-symbols-rounded" style="font-size: inherit;">check</span></span>'
     elif v == "non":
-        return '<span class="presence-no">✗</span>'
+        return '<span class="presence-no"><span class="material-symbols-rounded" style="font-size: inherit;">close</span></span>'
     else:
-        return '<span class="presence-unknown">?</span>'
+        return '<span class="presence-unknown"><span class="material-symbols-rounded" style="font-size: inherit;">question_mark</span></span>'
